@@ -20,7 +20,7 @@ pub mod httpclient {
             let resp = RefCell::new(&self.stream);
 
             resp.borrow_mut().read(&mut buffer).unwrap();
-            let response = "HTTP/1.1 300 OK\r\n\r\n"; //返回一个响应行
+            let response = "HTTP/1.1 200 OK\r\n\r\nhandled"; //返回一个响应行
             resp.borrow_mut().write(response.as_bytes()).unwrap();
             resp.borrow_mut().flush().unwrap();
         }
