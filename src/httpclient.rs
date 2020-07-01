@@ -17,12 +17,12 @@ pub mod httpclient {
         fn exec(&self) {
             println!("rec...");
             let mut buffer = [0; 512];
-            let i = RefCell::new(&self.stream);
+            let resp = RefCell::new(&self.stream);
 
-            i.borrow_mut().read(&mut buffer).unwrap();
+            resp.borrow_mut().read(&mut buffer).unwrap();
             let response = "HTTP/1.1 300 OK\r\n\r\n"; //返回一个响应行
-            i.borrow_mut().write(response.as_bytes()).unwrap();
-            i.borrow_mut().flush().unwrap();
+            resp.borrow_mut().write(response.as_bytes()).unwrap();
+            resp.borrow_mut().flush().unwrap();
         }
     }
 
