@@ -1,6 +1,8 @@
 pub mod httpclient {
     use std::net::{TcpListener, TcpStream};
     use thread_pool::{Work, Threadpool};
+    use std::io::{Write, Read};
+    use std::cell::RefCell;
 
     pub struct Httpserver {
         listener: TcpListener,
@@ -14,6 +16,13 @@ pub mod httpclient {
     impl thread_pool::Process for Task {
         fn exec(&self) {
             println!("rec...");
+            let mut buffer = [0; 512];
+            let mut i = RefCell::new(&self.stream);
+
+            i.borrow_mut().read(&mut buffer).unwrap();
+            let response = "HTTP/1.1 200 OK\r\n\r\n"; //返回一个响应行
+            i.borrow_mut().write(response.as_bytes()).unwrap();
+            i.borrow_mut().flush().unwrap();
         }
     }
 
