@@ -7,6 +7,7 @@ use serde_derive::Deserialize;
 #[derive(Debug)]
 pub struct Config {
     pub hosts: Array,
+    pub max_num: u64,   //最大线程数
 }
 
 pub fn parse_config() -> Config {

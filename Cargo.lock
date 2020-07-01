@@ -137,6 +137,7 @@ dependencies = [
  "datetime",
  "serde",
  "serde_derive",
+ "thread_pool",
  "toml",
 ]
 
@@ -149,6 +150,16 @@ dependencies = [
  "proc-macro2",
  "quote",
  "unicode-xid",
+]
+
+[[package]]
+name = "thread_pool"
+version = "0.1.0"
+dependencies = [
+ "datetime",
+ "serde",
+ "serde_derive",
+ "toml",
 ]
 
 [[package]]
